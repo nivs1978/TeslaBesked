@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tesla besked</title>
+		<style>
+			@font-face {
+				font-family: tesla;
+				src: url(tesla.ttf);
+			}
+			html {
+				font-size: 24px;
+			}
+		</style>
+		<script type="text/javascript">
+			function show()
+			{
+			  var text = messageText.value.replace(/ /g, '&nbsp;');
+			  var textBr = text.replace(/\n/g, '<br />');
+			  message.innerHTML = textBr;
+			  message.style.fontSize = fontSize.value+"vw";
+			  controls.style.display = "none";
+			  message.style.display="block";
+			  document.body.style.backgroundColor = "rgb("+backgroundR.value+", "+ backgroundG.value + ", " + backgroundB.value + ")";
+			}
+
+			function showControls()
+			{
+			  document.body.style.backgroundColor = "#ffffff";
+			  controls.style.display = "block";
+			  message.style.display="none";
+			}
+
+			function showFontSize()
+			{
+				fontSizeText.innerText = fontSize.value;
+			}
+			
+			function setTextColor()
+			{
+				message.style.color = messageText.style.color = "rgb("+textR.value+", "+ textG.value + ", " + textB.value + ")";
+			}
+
+			function setBackgroundColor()
+			{
+				message.style.backgroundColor = messageText.style.backgroundColor = "rgb("+backgroundR.value+", "+ backgroundG.value + ", " + backgroundB.value + ")";
+			}
+
+		</script>
+	</head>
+	<body>
+		<div id="controls">
+			<div id ="showFullScreen">
+				1. Starte i fuldskærm, klik her: <a href ="https://www.youtube.com/redirect?q=https://teslabesked.meng-milling.dk">Start fuldskærm</a><br />
+				2. Når YouTube app'en er startet, spørger den om du vil forlade YouTube igen, svar "fortsæt til website".<br />
+				3. Skriv besked neden for og tryk på <b>Vis</b> knappen for at skjule kontrollerne og vise teksten i fuld skærm.
+			</div>
+			<br />
+			Besked:<br />
+			<textarea id="messageText" rows="4" cols="50" style="width:100%; height: 50%"></textarea><br/>
+			Skrift størrelse: <input type="range" min="1" max="20" value="5" id="fontSize" onInput="showFontSize()" onChange="showFontSize()" />
+			<span id="fontSizeText">5</span><br /><br />
+			<table border="0">
+				<tr>
+					<td>
+						Tekst farve:<br />
+						<table border="0">
+							<tr><td>Rød:</td><td><input type="range" min="0" max="255" value="0" id="textR" onInput="setTextColor()" onChange="setTextColor()" style="width:200px;" /></td></tr>
+							<tr><td>Grøn:</td><td><input type="range" min="0" max="255" value="0" id="textG" onInput="setTextColor()" onChange="setTextColor()" style="width:200px;" /></td></tr>
+							<tr><td>Blå:</td><td><input type="range" min="0" max="255" value="0" id="textB" onInput="setTextColor()" onChange="setTextColor()" style="width:200px;" /></td></tr>
+						</table>
+					</td>
+					<td>
+						Baggrunds farve:<br />
+						<table border="0">
+							<tr><td>Rød:</td><td><input type="range" min="0" max="255" value="255" id="backgroundR" onInput="setBackgroundColor()" onChange="setBackgroundColor()" style="width:200px;" /></td></tr>
+							<tr><td>Grøn:</td><td><input type="range" min="0" max="255" value="255" id="backgroundG" onInput="setBackgroundColor()" onChange="setBackgroundColor()" style="width:200px;" /></td></tr>
+							<tr><td>Blå:</td><td><input type="range" min="0" max="255" value="255" id="backgroundB" onInput="setBackgroundColor()" onChange="setBackgroundColor()" style="width:200px;" /></td></tr>
+						</table>
+					</td>
+				</tr>
+			</table><br />
+			<input type="button" id="btnShow" value="Vis" onclick="show()" style="font-size: 24px; width: 100px; height:50px;" />&nbsp;&nbsp;(Tryk på tesksten hvis du vil ændre noget igen)
+		</div>
+		<div id="message" style="  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; font-family: 'tesla'; text-transform: uppercase; text-align: center;" onclick="showControls()"></div>
+	</body>
+</html>	
+
